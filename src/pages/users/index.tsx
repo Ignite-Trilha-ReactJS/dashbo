@@ -5,16 +5,16 @@ import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { SideBar } from "../../components/SideBar";
 
-export default function UserList(){
+export default function UserList() {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
 
-  
+
   return (
     <Box>
-      <Header />      
+      <Header />
 
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
         <SideBar />
@@ -24,11 +24,11 @@ export default function UserList(){
             <Heading size="lg" fontWeight="normal">Usuários</Heading>
 
             <Link href="/users/create" passHref>
-              <Button 
-                as="a" 
-                size="sm" 
-                fontSize="sm" 
-                colorScheme="pink" 
+              <Button
+                as="a"
+                size="sm"
+                fontSize="sm"
+                colorScheme="pink"
                 leftIcon={<Icon as={RiAddLine} />}
               >
                 Criar novo
@@ -36,7 +36,7 @@ export default function UserList(){
             </Link>
 
           </Flex>
-        
+
           <Table colorScheme="whiteAlpha">
             <Thead>
               <Tr>
@@ -47,39 +47,39 @@ export default function UserList(){
                 {isWideVersion && <Th>Data de cadastro</Th>}
                 <Th width="8"></Th>
               </Tr>
-            </Thead>            
-              <Tbody>
-                {Array.from(Array(5).keys()).map(key => (
-                  <Tr key={key}>
-                    <Td px={["4", "4", "6"]}>
-                      <Checkbox colorScheme="pink" />           
-                    </Td>
-                    <Td>
-                      <Box>
-                        <Text fontWeight="bold">Rodrigo Gonçalves</Text>
-                        <Text fontWeight="sm" color="gray.300">rodrigo@email.com</Text>
-                      </Box>
-                    </Td>
-                    {isWideVersion && <Td>04 de Abril, 2021</Td>}
-                    <Td>
-                        {
-                          isWideVersion &&
-                          (<Button 
-                            as="a" 
-                            size="sm" 
-                            fontSize="sm" 
-                            colorScheme="purple" 
-                            leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                            >
-                              { isWideVersion}
-                          </Button>)
-                        }
-                    </Td>
-                  </Tr>
-                ))}
-              </Tbody>
+            </Thead>
+            <Tbody>
+              {Array.from(Array(5).keys()).map(key => (
+                <Tr key={key}>
+                  <Td px={["4", "4", "6"]}>
+                    <Checkbox colorScheme="pink" />
+                  </Td>
+                  <Td>
+                    <Box>
+                      <Text fontWeight="bold">Douglas Santos</Text>
+                      <Text fontWeight="sm" color="gray.300">douglassantos@email.com</Text>
+                    </Box>
+                  </Td>
+                  {isWideVersion && <Td>04 de Abril, 2021</Td>}
+                  <Td>
+                    {
+                      isWideVersion &&
+                      (<Button
+                        as="a"
+                        size="sm"
+                        fontSize="sm"
+                        colorScheme="purple"
+                        leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                      >
+                        {isWideVersion}
+                      </Button>)
+                    }
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
           </Table>
-                  
+
           <Pagination />
         </Box>
       </Flex>

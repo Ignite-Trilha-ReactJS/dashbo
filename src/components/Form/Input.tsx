@@ -6,28 +6,28 @@ import { FieldError } from 'react-hook-form';
 interface IInputProps extends ChakraInputProps {
   name: string;
   label?: string;
-  error?:FieldError;
+  error?: FieldError;
 }
 
-const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = ({ name, label, error = null, ...rest }, ref ) => {
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = ({ name, label, error = null, ...rest }, ref) => {
   return (
     <FormControl isInvalid={!!error}>
-      {!!label && <FormLabel htmlFor="email">E-mail</FormLabel>}
-      <ChakraInput 
+      {!!label && <FormLabel htmlFor="email">{label}</FormLabel>}
+      <ChakraInput
         name={name}
         id={name}
-        type="email" 
-        focusBorderColor="pink.500" 
-        bgColor="gray.900" 
+        type="email"
+        focusBorderColor="pink.500"
+        bgColor="gray.900"
         variant="filled"
         _hover={{
           bgColor: 'gray.900'
         }}
         size="lg"
-        ref={ref}        
+        ref={ref}
         {...rest}
       />
-      {!!error && 
+      {!!error &&
         <FormErrorMessage>
           {error.message}
         </FormErrorMessage>

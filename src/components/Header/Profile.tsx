@@ -4,22 +4,22 @@ interface IProfileProps {
   showProfileData: boolean;
 }
 
-export function Profile({ showProfileData } : IProfileProps){
-  return(
+export function Profile({ showProfileData }: IProfileProps) {
+  return (
     <Flex align="center">
-    {showProfileData && (
-      <Box mr="4" textAlign="right">
-        <Text>Rodrigo Gonçalves</Text>
-        <Text 
-          color="gray.300"
-          fontSize="small"
-        >
-          rodrigo@email.com
+      {showProfileData && (
+        <Box mr="4" textAlign="right">
+          <Text>Douglas Santos</Text>
+          <Text
+            color="gray.300"
+            fontSize="small"
+          >
+            douglassantos@email.com
         </Text>
-      </Box>
-    )}
+        </Box>
+      )}
 
-    <Avatar size="md" name="Rodrigo Gonçalves" src="https://avatars.githubusercontent.com/u/49030804?v=4"/>
-  </Flex>
+      <Avatar size="md" name="Douglas Santos" src="https://avatars.githubusercontent.com/u/14297064?v=4" />
+    </Flex>
   )
 }
