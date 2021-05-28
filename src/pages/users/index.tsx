@@ -1,7 +1,8 @@
-import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Text, Th, Thead, Tr, useBreakpointValue, Spinner, Link } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { useState } from "react";
+import NextLink from "next/link";
+import { GetServerSideProps } from "next";
+import { RiAddLine, RiPencilLine } from "react-icons/ri";
+import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Text, Th, Thead, Tr, useBreakpointValue, Spinner, Link } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
@@ -9,13 +10,29 @@ import { SideBar } from "../../components/SideBar";
 
 import { queryClient } from '../../services/queryClient';
 
-import { useUsers } from "../../services/hooks/useUsers";
+import { useUsers, getUsers } from "../../services/hooks/useUsers";
+
 import { api } from "../../services/api";
 
-export default function UserList() {
+
+type User = {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: string;
+}
+
+interface IUserList {
+  users: User[],
+  totalCount: number;
+}
+
+export default function UserList({ users }: IUserList) {
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, error, isFetching } = useUsers(page);
+  const { data, isLoading, error, isFetching } = useUsers(page, {
+    initialData: users
+  });
 
   async function handlePrefetchUser(userId: string) {
     await queryClient.prefetchQuery(['user', userId], async () => {
@@ -129,3 +146,13 @@ export default function UserList() {
     </Box >
   )
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  // const { users, totalCount } = await getUsers(1);  ta dando erro somente no miragejs
+
+  return {
+    props: {
+      // users, totalCount
+    }
+  }
+} 
